@@ -3,28 +3,33 @@ using UnityEngine;
 public class Bossmovement1 : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+   float Cooldown = 5f;
+    public GameObject FireBall;
+    float cooldownTimer = 0f;
+    public float health = 100f;
+    public float damage = 10f;
+    public float speed = 5f;
+     float range = 10f;
+     GameObject player;
+     Vector3 targetlocation;
+     Vector3 direction;
+     Rigidbody rigidbody;
     void Start()
     {
-        
-        attack delay function
-        position target function
-        spit projectile function
-        attack mele function.
-        health variable
-        damage variable
-        walk animation?
+        cooldownTimer = 0f;
+        player = GameObject.FindGameObjectWithTag("TestPlayer");
+            targetlocation = player.GetComponent<Transform>().position;
+            rigidbody = GetComponent<Rigidbody>();
 
-        range variable
-
-        if health <= 0
+        if (health <= 0)
         {
-            die function;
+            Debug.Log("Boss is dead!");
+            Destroy(gameObject);
         }
-        
-        something
         else
         {
-            keep playing idle animation; 
+            //keep playing idle animation; 
         }
         
     }
@@ -32,6 +37,54 @@ public class Bossmovement1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        cooldownTimer += Time.deltaTime;
+        getplayerlocation();
+        attack();
+        move();
     }
+
+    void attack()
+    {
+        cooldownTimer += Time.deltaTime;
+        if (cooldownTimer < Cooldown)
+        {
+            // do nothing
+        }
+        else  
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) < range)
+            {
+            
+                // attack player
+                Debug.Log("Player in range, attacking!");
+            }
+            else
+            {
+                 GameObject projectile = Instantiate(FireBall, transform.position, Quaternion.identity);
+            cooldownTimer = 0f; // Reset cooldown timer
+            }
+        }
+           
+    }
+    void move()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) < range)
+        {
+            // Move towards player
+            direction = targetlocation - transform.position;
+            rigidbody = GetComponent<Rigidbody>();
+            rigidbody.AddForce(direction.normalized * speed);
+        }
+        else
+        {
+            // Keep course
+        }
+    }
+     void getplayerlocation()
+    {
+        player = GameObject.FindGameObjectWithTag("TestPlayer");
+        targetlocation = player.GetComponent<Transform>().position;
+    }
+
+   
 }
