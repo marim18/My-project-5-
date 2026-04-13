@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class Porjectilescript : MonoBehaviour
 {
+    public float speed = 10f;
+        float objectlifetime = 0f;
+        GameObject player;
+        Vector3 targetlocation;
+        Vector3 direction;
+        Rigidbody rigidbody;
+        Vector3 Projectilelaunchlocation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
  void Start()
     {
      
        // Porjectilescript to location;
        GameObject Boss = GameObject.FindGameObjectWithTag("Boss");
-        var Projectilelaunchlocation = Boss.GetComponent<Transform>().position;
+        Projectilelaunchlocation = Boss.GetComponent<Transform>().position;
         GameObject player = GameObject.FindGameObjectWithTag("TestPlayer");
-        var targetlocation = player.GetComponent<Transform>().position;
-        var direction = targetlocation - Projectilelaunchlocation;
-        var rigidbody = GetComponent<Rigidbody>();
+        targetlocation = player.GetComponent<Transform>().position;
+       direction = targetlocation - Projectilelaunchlocation;
+        rigidbody = GetComponent<Rigidbody>();
         rigidbody.AddForce(direction.normalized * speed);
        objectlifetime = 0;
        
@@ -33,7 +40,7 @@ public class Porjectilescript : MonoBehaviour
         }
         else
         {
-            // Keep course
+            Destroy(gameObject);
         }
 
         objectlifetime += Time.deltaTime;
