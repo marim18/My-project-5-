@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 9050162513794587192}
   - component: {fileID: 9175983436935028258}
   - component: {fileID: 9174778771146500318}
+  - component: {fileID: 5976516094818262756}
+  - component: {fileID: 2737318423143658182}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: projectile
@@ -4849,6 +4851,52 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!143 &5976516094818262756
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047940511414036232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 7.1892433
+  m_Radius: 4.130001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2737318423143658182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9047940511414036232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b388589949f9448aca1903107a88cb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleCharacterMotor
+  cursorLockMode: 1
+  cursorVisible: 0
+  walkSpeed: 2
+  runSpeed: 4
+  gravity: 9.8
+  cameraPivot: {fileID: 0}
+  lookSpeed: 45
+  invertY: 1
+  movementAcceleration: 1
 --- !u!1 &9048004186212617408
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TestPlayer
   - projectiletrail
+  - projectile
   layers:
   - Default
   - TransparentFX

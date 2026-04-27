@@ -15,6 +15,10 @@ public class Bossmovement1 : MonoBehaviour
      Vector3 targetlocation;
      Vector3 direction;
      Rigidbody rigidbody;
+     [SerializeField] private AnimatorControllerParameterType _type;
+     [SerializeField] private string _name;
+      [SerializeField] private Animator _animator;
+      [SerializeField] private float _value;
     void Start()
     {
         cooldownTimer = 0f;
@@ -25,7 +29,8 @@ public class Bossmovement1 : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Boss is dead!");
-            Destroy(gameObject);
+
+           // Destroy(gameObject);
         }
         else
         {
@@ -68,6 +73,8 @@ public class Bossmovement1 : MonoBehaviour
     }
     void move()
     {
+        _name = "Die";
+        InvokeTrigger();
         if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
             // Move towards player
@@ -84,6 +91,20 @@ public class Bossmovement1 : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("TestPlayer");
         targetlocation = player.GetComponent<Transform>().position;
+    }
+
+     void InvokeTrigger()
+    {
+        switch (_type)
+        {
+            case AnimatorControllerParameterType.Trigger:
+                _animator.SetTrigger(_name);
+                break;
+
+            case AnimatorControllerParameterType.Float:
+                _animator.SetFloat(_name, _value);
+                break;
+        }
     }
 
    
