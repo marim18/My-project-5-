@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class VerticalMovingPlatform : MonoBehaviour
+public class VerticalOppositeMovingPlatform : MonoBehaviour
 {
 
     public float moveDistance = 5f;
