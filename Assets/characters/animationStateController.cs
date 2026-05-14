@@ -9,6 +9,9 @@ public class animationStateController : MonoBehaviour
     int jumpHash;
     int swordAttackHash;
 
+    public float walkSpeed = 1.5f;
+    public float runSpeed = 4f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -30,7 +33,7 @@ public class animationStateController : MonoBehaviour
         bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
         bool swordPressed = Input.GetKeyDown(KeyCode.F);
 
-        // Walking
+        // Walking animation
         if (!isWalking && forwardPressed)
         {
             animator.SetBool(isWalkingHash, true);
@@ -41,7 +44,7 @@ public class animationStateController : MonoBehaviour
             animator.SetBool(isWalkingHash, false);
         }
 
-        // Running
+        // Running animation
         if (!isRunning && forwardPressed && runPressed)
         {
             animator.SetBool(isRunningHash, true);
@@ -52,16 +55,24 @@ public class animationStateController : MonoBehaviour
             animator.SetBool(isRunningHash, false);
         }
 
-        // Jump
+        // Jump animation
         if (jumpPressed)
         {
             animator.SetTrigger(jumpHash);
         }
 
-        // Sword attack
+        // Sword animation
         if (swordPressed)
         {
             animator.SetTrigger(swordAttackHash);
+        }
+
+        // Actual character movement
+        if (forwardPressed)
+        {
+            float currentSpeed = runPressed ? runSpeed : walkSpeed;
+
+            transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
         }
     }
 }
