@@ -9,9 +9,11 @@ public class Porjectilescript : MonoBehaviour
         Vector3 direction;
         Rigidbody rigidbody;
         Vector3 Projectilelaunchlocation;
+        //GameObject fireball = "Fireball";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
  void Start()
     {
+    
      
        // Porjectilescript to location;
        GameObject Boss = GameObject.FindGameObjectWithTag("Boss");
@@ -34,7 +36,8 @@ public class Porjectilescript : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("TestPlayer");
             targetlocation = player.GetComponent<Transform>().position;
-            direction = targetlocation - transform.position;
+           // direction = targetlocation - transform.position;
+           direction = targetlocation - Projectilelaunchlocation;
             rigidbody = GetComponent<Rigidbody>();
             GetComponent<Rigidbody>().AddForce(direction.normalized * speed);
         }

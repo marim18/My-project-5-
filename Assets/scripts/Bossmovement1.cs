@@ -15,12 +15,21 @@ public class Bossmovement1 : MonoBehaviour
      Vector3 targetlocation;
      Vector3 direction;
      Rigidbody rigidbody;
-     [SerializeField] private AnimatorControllerParameterType _type;
-     [SerializeField] private string _name;
-      [SerializeField] private Animator _animator;
-      [SerializeField] private float _value;
+      public Animator animator;
+GameObject Boss;
     void Start()
     {
+        if (FireBall == null)
+        {
+            Debug.LogError("FireBall prefab is not assigned in the inspector!");
+        }
+        if (GetComponent<Animator>() == null)
+        {
+            Debug.LogError("No Animator component found on the boss!");
+        }
+        Boss = GameObject.FindGameObjectWithTag("Boss");
+        animator = gameObject.GetComponent<Animator>();
+       
         cooldownTimer = 0f;
         player = GameObject.FindGameObjectWithTag("TestPlayer");
             targetlocation = player.GetComponent<Transform>().position;
@@ -59,32 +68,49 @@ public class Bossmovement1 : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.transform.position) < range)
             {
-            
+                int randomAttack = Random.Range(0, 2); // Randomly choose between 0 and 1
+                if (randomAttack == 0)
+                {
+                    // Perform headbutt attack
+                    GetComponent<Animator>().Play("hit"); // Play headbutt animation
+                    Debug.Log("Player in range, performing headbutt attack!");
+                }
+                else
+                {
+                    // Perform fireball attack
+                    GetComponent<Animator>().Play("hit2"); // punch animation
+                    Debug.Log("Player in range, performing punch attack!");
+                }
                 // attack player
+                GetComponent<Animator>().Play("hit"); //thats the headbutt
                 Debug.Log("Player in range, attacking!");
             }
             else
             {
-                 GameObject projectile = Instantiate(FireBall, transform.position, Quaternion.identity);
+             
+                 GameObject projectile = Instantiate(FireBall, Boss.GetComponent<Transform>().position, Quaternion.identity);
             cooldownTimer = 0f; // Reset cooldown timer
+            GetComponent<Animator>().Play("Rage"); // Play attack animation
             }
         }
            
     }
     void move()
     {
-        _name = "Die";
-        InvokeTrigger();
+       
         if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
             // Move towards player
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             direction = targetlocation - transform.position;
-            rigidbody = GetComponent<Rigidbody>();
-            rigidbody.AddForce(direction.normalized * speed);
+             rigidbody.AddForce(direction.normalized * speed);
+             GetComponent<Animator>().Play("walk"); // Play walk animation
+        
         }
         else
         {
-            // Keep course
+            GetComponent<Animator>().Play("idle"); // Play idle animation
+             rigidbody.linearVelocity = Vector3.zero; // Stop movement
         }
     }
      void getplayerlocation()
@@ -93,19 +119,7 @@ public class Bossmovement1 : MonoBehaviour
         targetlocation = player.GetComponent<Transform>().position;
     }
 
-     void InvokeTrigger()
-    {
-        switch (_type)
-        {
-            case AnimatorControllerParameterType.Trigger:
-                _animator.SetTrigger(_name);
-                break;
-
-            case AnimatorControllerParameterType.Float:
-                _animator.SetFloat(_name, _value);
-                break;
-        }
-    }
+    
 
    
 }
