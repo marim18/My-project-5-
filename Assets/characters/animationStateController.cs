@@ -2,29 +2,38 @@ using UnityEngine;
 
 public class animationStateController : MonoBehaviour
 {
-    Animator animator;
+   public Animator animator;
 
     int isWalkingHash;
     int isRunningHash;
     int jumpHash;
     int swordAttackHash;
+   
 
     public float walkSpeed = 1.5f;
     public float runSpeed = 4f;
 
+       
     void Start()
     {
+       Debug.Log("Animation State Controller started successfully."); 
         animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("No Animator component found on the character!");
+        }
 
         isWalkingHash = Animator.StringToHash("IsWalking");
         isRunningHash = Animator.StringToHash("IsRunning");
         jumpHash = Animator.StringToHash("Jump");
-        swordAttackHash = Animator.StringToHash("SwordAttack");
+        swordAttackHash = Animator.StringToHash("SwordAttack"); 
+       
     }
 
     void Update()
-    {
-        bool isWalking = animator.GetBool(isWalkingHash);
+    {  
+        Debug.Log("Update method called in Animation State Controller.");
+         bool isWalking = animator.GetBool(isWalkingHash);
         bool isRunning = animator.GetBool(isRunningHash);
 
         bool forwardPressed = Input.GetKey(KeyCode.W);
@@ -33,10 +42,12 @@ public class animationStateController : MonoBehaviour
         bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
         bool swordPressed = Input.GetKeyDown(KeyCode.F);
 
+
         // Walking animation
         if (!isWalking && forwardPressed)
         {
             animator.SetBool(isWalkingHash, true);
+            Debug.Log("Walking animation triggered.");
         }
 
         if (isWalking && !forwardPressed)
@@ -75,4 +86,5 @@ public class animationStateController : MonoBehaviour
             transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
         }
     }
+    
 }

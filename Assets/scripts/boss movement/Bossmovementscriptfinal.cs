@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-//i gave up and pasted my buggy code into chatgpt
-public class Bosschat : MonoBehaviour
+//i gave up and pasted my buggy code into chatgpt. The result was a mess, then i changed it considerably and simplified it.
+public class Bossmovementscriptfinal : MonoBehaviour
 {
 
 
     public GameObject FireBall;
-
+int tempcheckythingy = 0;
     public float health = 100f;
     public float damage = 10f;
     public float speed = 5f;
@@ -20,40 +20,46 @@ public class Bosschat : MonoBehaviour
 
     private GameObject player;
     private Rigidbody rb;
-    private Animator animator;
+    public Animator animatorboss;
     
 
     void Start()
-    { animator = GetComponent<Animator>();
+    { animatorboss = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        animator.SetFloat("Walk", 0);
+        if (rb == null)
+        {
+            Debug.LogError("No Rigidbody component found on the boss!");
+        }
+        animatorboss.SetFloat("Walk", 1);
        // animator.SetTrigger("IdleAction");
        
 
-        player = GameObject.FindGameObjectWithTag("TestPlayer");
+        player = GameObject.FindGameObjectWithTag("Player");
 
         if (FireBall == null){
             Debug.LogError("FireBall prefab is not assigned!");}
 
-        if (animator == null){
+        if (animatorboss == null){
             Debug.LogError("No Animator component found!");
         }
 
         if (player == null){
-            Debug.LogError("No player found with tag TestPlayer!");
+            Debug.LogError("No player found with tag Player!");
            
         } 
     }
 
-    async Task Update()
+    void Update()
     {
+        tempcheckythingy++;
+        Debug.Log("Boss Update called. TempCheck: " + tempcheckythingy);
         if (player == null)
-            return;
+           Debug.LogError("Player reference is missing!");
 
         if (health <= 0)
         {
             Die();
-            return;
+           
         }
 
         cooldownTimer += Time.deltaTime;
@@ -63,7 +69,8 @@ public class Bosschat : MonoBehaviour
         if (distance <= meleeRange && cooldownTimer >= cooldown)
         {
             StopWalking();
-            await MeleeAttack();
+
+            MeleeAttack();
             cooldownTimer = 0f;
         }
         else if (distance <= meleeRange)
@@ -72,12 +79,14 @@ public class Bosschat : MonoBehaviour
         }
         else
         {
+            Debug.Log("Boss is out of melee range, walking towards player.");
+            animatorboss.SetTrigger("IdleAction");
             WalkTowardsPlayer();
         }
       
     }
 
-    async Task MeleeAttack()
+    void MeleeAttack()
     {
         Debug.Log("Boss is performing a melee attack!");
 
@@ -85,15 +94,15 @@ public class Bosschat : MonoBehaviour
 
         if (randomAttack == 0)
         {
-            animator.SetTrigger("Hit");
+            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
-            await Task.Delay(500); // Wait for the hit animation to play
+             // Wait for the hit animation to play
         }
         else
         {
-            animator.SetTrigger("Hit2");
+            animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss used punch!");
-            await Task.Delay(500); // Wait for the punch animation to play
+            // Wait for the punch animation to play
         }
     }
 
@@ -102,7 +111,7 @@ public class Bosschat : MonoBehaviour
     void LaunchProjectile()
     {
         if (FireBall == null)
-            return;
+            Debug.LogError("FireBall prefab is not assigned!");
 
         Instantiate(
             FireBall,
@@ -113,8 +122,9 @@ public class Bosschat : MonoBehaviour
 
     void WalkTowardsPlayer()
     {
-        Debug.Log("Boss is walking towards the player.");
-        animator.SetFloat("Walk", 1);
+        tempcheckythingy++;
+        Debug.Log("Boss is walking towards the player." + " TempCheck: " + tempcheckythingy);
+        animatorboss.SetFloat("Walk", 1);
 
         Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
@@ -126,12 +136,13 @@ public class Bosschat : MonoBehaviour
         );
 
         transform.LookAt(targetPosition);
+        Debug.Log("Boss is looking at the player." + targetPosition);
     }
 
     void StopWalking()
     {
         Debug.Log("Boss stopped walking.");
-        animator.SetFloat("Walk", 0);
+        animatorboss.SetFloat("Walk", 0);
       //  animator.SetTrigger("IdleAction");
 
         if (rb != null)
@@ -145,17 +156,17 @@ public class Bosschat : MonoBehaviour
     void Die()
     {
         StopWalking();
-        animator.SetTrigger("Die");
+        animatorboss.SetTrigger("Die");
         Debug.Log("Boss is dead!");
     }
-    async Task OnCollide(Collision collision)
+    void triggerOnCollide(Collision collision)
     { Debug.Log("Boss collided with: " + collision.gameObject.name);
-        if (collision.gameObject.CompareTag("TestPlayer"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             
-            animator.SetTrigger("Hit");
-            await Task.Delay(500); // Wait for the hit animation to play
-            animator.SetTrigger("Hit2");
+            animatorboss.SetTrigger("Hit");
+           // Wait for the hit animation to play
+            animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss collided with player, dealing damage!");
             // Here you would typically call a method on the player's health script to apply damage
             // e.g., collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);

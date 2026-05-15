@@ -9,6 +9,7 @@ public class ZombieFree : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("why are u running.");
         m_animators = FindObjectsOfType<Animator>();
     }
 

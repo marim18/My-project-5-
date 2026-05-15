@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-
+// why are u gay 
+/*
 namespace Supercyan.FreeSample
 {
     public class DemoFree : MonoBehaviour
@@ -11,7 +12,7 @@ namespace Supercyan.FreeSample
 
         private void Start()
         {
-            m_animators = FindObjectsOfType<Animator>();
+            m_animators = Object.FindObjectsOfType<Animator>();
         }
 
         private void Update()
@@ -90,3 +91,4 @@ namespace Supercyan.FreeSample
         }
     }
 }
+*/

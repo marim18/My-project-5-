@@ -31,7 +31,7 @@ GameObject Boss;
         animator = gameObject.GetComponent<Animator>();
        
         cooldownTimer = 0f;
-        player = GameObject.FindGameObjectWithTag("TestPlayer");
+        player = GameObject.FindGameObjectWithTag("Player");
             targetlocation = player.GetComponent<Transform>().position;
             rigidbody = GetComponent<Rigidbody>();
 
@@ -104,20 +104,21 @@ GameObject Boss;
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             direction = targetlocation - transform.position;
              rigidbody.AddForce(direction.normalized * speed);
-             GetComponent<Animator>().Play("walk"); // Play walk animation
+             GetComponent<Animator>().Play("Walk"); // Play walk animation
         
         }
         else
         {
-            GetComponent<Animator>().Play("idle"); // Play idle animation
+            GetComponent<Animator>().Play("IdleAction"); // Play idle animation
              rigidbody.linearVelocity = Vector3.zero; // Stop movement
         }
     }
      void getplayerlocation()
     {
-        player = GameObject.FindGameObjectWithTag("TestPlayer");
+        player = GameObject.FindGameObjectWithTag("Player");
         targetlocation = player.GetComponent<Transform>().position;
     }
+
 
     
 
