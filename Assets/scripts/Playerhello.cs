@@ -8,7 +8,7 @@ public class Playerhello : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         string osition = player.transform.position.ToString();
         Debug.Log("Hello, Player! Position: " + osition);
-        Instantiate(player, player.transform.position, player.transform.rotation);
+        //Instantiate(player, player.transform.position, player.transform.rotation);
     }
 
     // Update is called once per frame

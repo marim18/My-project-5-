@@ -30,7 +30,7 @@ int tempcheckythingy = 0;
         {
             Debug.LogError("No Rigidbody component found on the boss!");
         }
-        animatorboss.SetFloat("Walk", 1);
+        animatorboss.SetFloat("Walk", 0);
        // animator.SetTrigger("IdleAction");
        
 
@@ -49,10 +49,10 @@ int tempcheckythingy = 0;
         } 
     }
 
-    void Update()
+    async Task Update()
     {
-        tempcheckythingy++;
-        Debug.Log("Boss Update called. TempCheck: " + tempcheckythingy);
+        
+       
         if (player == null)
            Debug.LogError("Player reference is missing!");
 
@@ -70,7 +70,7 @@ int tempcheckythingy = 0;
         {
             StopWalking();
 
-            MeleeAttack();
+           MeleeAttack();
             cooldownTimer = 0f;
         }
         else if (distance <= meleeRange)
@@ -79,8 +79,7 @@ int tempcheckythingy = 0;
         }
         else
         {
-            Debug.Log("Boss is out of melee range, walking towards player.");
-            animatorboss.SetTrigger("IdleAction");
+           
             WalkTowardsPlayer();
         }
       
@@ -94,15 +93,17 @@ int tempcheckythingy = 0;
 
         if (randomAttack == 0)
         {
-            animatorboss.SetTrigger("Hit");
+           animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
              // Wait for the hit animation to play
+        // Replace with actual animation duration
         }
         else
         {
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss used punch!");
             // Wait for the punch animation to play
+            //await Task.Delay(500);  // Replace with actual animation duration
         }
     }
 
@@ -120,12 +121,11 @@ int tempcheckythingy = 0;
         );
     }
 
-    void WalkTowardsPlayer()
+   void WalkTowardsPlayer()
     {
-        tempcheckythingy++;
+        
         Debug.Log("Boss is walking towards the player." + " TempCheck: " + tempcheckythingy);
-        animatorboss.SetFloat("Walk", 1);
-
+        
         Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
 
@@ -135,8 +135,10 @@ int tempcheckythingy = 0;
             speed * Time.deltaTime
         );
 
+        // Replace with actual look rotation duration
         transform.LookAt(targetPosition);
-        Debug.Log("Boss is looking at the player." + targetPosition);
+        animatorboss.SetFloat("Walk", 1);
+
     }
 
     void StopWalking()
@@ -168,8 +170,6 @@ int tempcheckythingy = 0;
            // Wait for the hit animation to play
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss collided with player, dealing damage!");
-            // Here you would typically call a method on the player's health script to apply damage
-            // e.g., collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
 }

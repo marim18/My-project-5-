@@ -801,7 +801,7 @@ AnimatorState:
   m_Tag: 
   m_SpeedParameter: Walk
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: Walk
   m_TimeParameter: 
 --- !u!1101 &4876633340481339774
 AnimatorStateTransition:
