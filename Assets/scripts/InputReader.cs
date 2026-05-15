@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-
+/*
 public class InputReader : MonoBehaviour
 {
 
@@ -56,4 +56,5 @@ public class InputReader : MonoBehaviour
     {
         
     }
-}
+}/
+*/
