@@ -8,7 +8,8 @@ public class Bossmovementscriptfinal : MonoBehaviour
 
     public GameObject FireBall;
 int tempcheckythingy = 0;
-    public float health = 100f;
+    public float currentHealth = 100f;
+    public float maxHealth = 100f;
     public float damage = 10f;
     public float speed = 5f;
 
@@ -21,7 +22,15 @@ int tempcheckythingy = 0;
     private GameObject player;
     private Rigidbody rb;
     public Animator animatorboss;
-    
+    [SerializeField] private AudioClip meleeAttackSound;
+    [SerializeField] private AudioClip projectileAttackSound;  
+    [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip dieSound;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip ragesound;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip gruntSound;
+    public bool walksoundplayed = false;
 
     void Start()
     { animatorboss = GetComponent<Animator>();
@@ -56,7 +65,7 @@ int tempcheckythingy = 0;
         if (player == null)
            Debug.LogError("Player reference is missing!");
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
            
@@ -90,9 +99,16 @@ int tempcheckythingy = 0;
         Debug.Log("Boss is performing a melee attack!");
 
         int randomAttack = Random.Range(0, 2);
+        int randomnoise = Random.Range(0, 2);
 
         if (randomAttack == 0)
         {
+            AudioSource.PlayClipAtPoint(meleeAttackSound, transform.position);
+            if (randomnoise == 0)
+            {
+                AudioSource.PlayClipAtPoint(gruntSound, transform.position);
+            }
+
            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
              // Wait for the hit animation to play
@@ -100,6 +116,11 @@ int tempcheckythingy = 0;
         }
         else
         {
+             if (randomnoise == 0)
+            {
+                AudioSource.PlayClipAtPoint(gruntSound, transform.position);
+            }
+            AudioSource.PlayClipAtPoint(meleeAttackSound, transform.position);
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss used punch!");
             // Wait for the punch animation to play
@@ -126,15 +147,20 @@ int tempcheckythingy = 0;
         
         Debug.Log("Boss is walking towards the player." + " TempCheck: " + tempcheckythingy);
         
+        
         Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;
 
         transform.position = Vector3.MoveTowards(
             transform.position,
             targetPosition,
-            speed * Time.deltaTime
-        );
-
+            speed * Time.deltaTime);
+            
+        if (!walksoundplayed)
+        {
+            AudioSource.PlayClipAtPoint(walkSound, transform.position);
+            walksoundplayed = true;
+        }
         // Replace with actual look rotation duration
         transform.LookAt(targetPosition);
         animatorboss.SetFloat("Walk", 1);
@@ -153,6 +179,7 @@ int tempcheckythingy = 0;
             // If this errors, use:
             // rb.velocity = Vector3.zero;
         }
+        walksoundplayed = false;
     }
 
     void Die()
@@ -160,6 +187,8 @@ int tempcheckythingy = 0;
         StopWalking();
         animatorboss.SetTrigger("Die");
         Debug.Log("Boss is dead!");
+        AudioSource.PlayClipAtPoint(dieSound, transform.position);
+        
     }
     void triggerOnCollide(Collision collision)
     { Debug.Log("Boss collided with: " + collision.gameObject.name);
@@ -170,6 +199,7 @@ int tempcheckythingy = 0;
            // Wait for the hit animation to play
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss collided with player, dealing damage!");
+            player.GetComponent<Playerhello>().takedamage((int)damage);
         }
     }
 }
