@@ -89,6 +89,7 @@ public class Playerhello : MonoBehaviour
     }
     public void Die()
     {
+        AudioSource.PlayClipAtPoint(PlayerDieSfx, transform.position);
         Debug.Log("Player has died.");
         // Add death logic here (e.g., respawn, game over screen, etc.)
     }
