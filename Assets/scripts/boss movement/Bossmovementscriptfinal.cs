@@ -147,8 +147,6 @@ int tempcheckythingy = 0;
    void WalkTowardsPlayer()
     {
         
-        Debug.Log("Boss is walking towards the player." + " TempCheck: " + tempcheckythingy);
-        
         
         Vector3 targetPosition = player.transform.position;
         targetPosition.y = transform.position.y;

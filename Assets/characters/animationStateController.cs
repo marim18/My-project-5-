@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class animationStateController : MonoBehaviour
+public class AnimationStateController : MonoBehaviour
 {
    public Animator animator;
 
@@ -8,8 +8,8 @@ public class animationStateController : MonoBehaviour
     int isRunningHash;
     int jumpHash;
     int swordAttackHash;
-    public bool isWalking;
-    public bool isRunning;
+    public bool isWalking =false;
+    public bool isRunning = false;
     
    
 

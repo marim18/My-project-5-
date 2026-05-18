@@ -5,7 +5,7 @@ public class Playerhello : MonoBehaviour
     public int maxhealth = 100;
     public int playerdamage = 10;
     public int currenthealth;
-     public GameObject player;
+    public GameObject player;
     [SerializeField]
     private AudioClip AttackSound;
     [SerializeField]
@@ -31,27 +31,25 @@ public class Playerhello : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+       
        player = GameObject.FindGameObjectWithTag("Player");
-        string osition = player.transform.position.ToString();
-        Debug.Log("Hello, Player! Position: " + osition);
-        //Instantiate(player, player.transform.position, player.transform.rotation);
+       if (player == null)
+        {
+            Debug.LogError("No player GameObject assigned! Please assign the player GameObject in the inspector.");
+        }
+        else
+        {
+            string position = player.transform.position.ToString();
+            Debug.Log("Hello, Player! Position: " + position);
+            //Instantiate(player, player.transform.position, player.transform.rotation);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player != null && player.GetComponent<animationStateController>().isWalking == true)
-        {
-            if (!playerwalksoundplayed)
-            {
-                AudioSource.PlayClipAtPoint(walksound, transform.position);
-                playerwalksoundplayed = true;
-            }
-        }
-        else if (player != null && player.GetComponent<animationStateController>().isRunning == true)
-        {
-            AudioSource.PlayClipAtPoint(panting, transform.position);
-        }
+      
+        
     }
 
     public void takedamage  (int damage)

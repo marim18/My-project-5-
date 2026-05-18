@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class ZombieFree : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class ZombieFree : MonoBehaviour
     private void Start()
     {
         Debug.Log("why are u running.");
-        m_animators = FindObjectsOfType<Animator>();
+        m_animators = GetComponentsInChildren<Animator>(); //has been modified by maria may fail
     }
 
     private void OnGUI()

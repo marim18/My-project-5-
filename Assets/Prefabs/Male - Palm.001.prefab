@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bc93717672f4f6dbc6c93c4019c916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  animator: {fileID: 0}
+  animator: {fileID: 95307335064149935}
   isWalking: 0
   isRunning: 0
   walkSpeed: 1.5
@@ -144,7 +144,7 @@ MonoBehaviour:
   maxhealth: 100
   playerdamage: 10
   currenthealth: 0
-  player: {fileID: 0}
+  player: {fileID: 6788911539481273265}
   AttackSound: {fileID: 8300000, guid: 4dd3709bc57e142658a6b53f15346ce6, type: 3}
   damagesound: {fileID: 8300000, guid: 205be67afd3eb43a18e9e78c60a271f1, type: 3}
   walksound: {fileID: 8300000, guid: 203ac8b6f07070e4f93f1c1a6fff06c3, type: 3}
