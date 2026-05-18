@@ -80,13 +80,10 @@ PrefabInstance:
       addedObject: {fileID: 1537955493562357416}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 683b7603b0f9949ca9c8e954b65d2abe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2781430126255773659}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 683b7603b0f9949ca9c8e954b65d2abe, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 684763611744169958}
+      addedObject: {fileID: 4248646509783330708}
     - targetCorrespondingSourceObject: {fileID: 3689012281157237241, guid: 683b7603b0f9949ca9c8e954b65d2abe, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1410657047580066298}
+      addedObject: {fileID: 3680937094518572453}
   m_SourcePrefab: {fileID: 100100000, guid: 683b7603b0f9949ca9c8e954b65d2abe, type: 3}
 --- !u!1 &6788911539481273265 stripped
 GameObject:
@@ -132,7 +129,7 @@ MonoBehaviour:
   isRunning: 0
   walkSpeed: 1.5
   runSpeed: 4
---- !u!114 &2781430126255773659
+--- !u!114 &4248646509783330708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,118 +146,21 @@ MonoBehaviour:
   currenthealth: 0
   player: {fileID: 0}
   AttackSound: {fileID: 8300000, guid: 4dd3709bc57e142658a6b53f15346ce6, type: 3}
-  damagesound: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
-  walksound: {fileID: 8300000, guid: 9ea11a2d13d536e4e8441a0f5895995c, type: 3}
+  damagesound: {fileID: 8300000, guid: 205be67afd3eb43a18e9e78c60a271f1, type: 3}
+  walksound: {fileID: 8300000, guid: 203ac8b6f07070e4f93f1c1a6fff06c3, type: 3}
   playerwalksoundplayed: 0
-  panting: {fileID: 8300000, guid: 4dd3709bc57e142658a6b53f15346ce6, type: 3}
-  Grunt: {fileID: 8300000, guid: f30387194582d48e5a0bfa2625403e7c, type: 3}
-  Jumpsfx: {fileID: 8300000, guid: aab0b21cf44ea4d1881a3f5fe1bc4a27, type: 3}
-  Landingsfx: {fileID: 8300000, guid: 09226248e570c904a900ec2ecb767a68, type: 3}
+  panting: {fileID: 8300000, guid: 8800e692db52c4ad9bac9f80ff5a5f3e, type: 3}
+  Grunt: {fileID: 8300000, guid: 8800e692db52c4ad9bac9f80ff5a5f3e, type: 3}
+  Jumpsfx: {fileID: 8300000, guid: 0067ad294270d49b29bc2cf4306579d4, type: 3}
+  Landingsfx: {fileID: 8300000, guid: 942019cf9ecd5854ebeb343b12b7f779, type: 3}
   SwordAttackSfx: {fileID: 8300000, guid: b76357a42d03a4722afcba74c3073136, type: 3}
-  PlayerDieSfx: {fileID: 8300000, guid: 7dc48ac47b618424f8d032a339525809, type: 3}
---- !u!82 &684763611744169958
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6788911539481273265}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  PlayerDieSfx: {fileID: 8300000, guid: 7f1f4a3c9cc174774afe09b5e51617ee, type: 3}
 --- !u!1 &7044869917211354905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3689012281157237241, guid: 683b7603b0f9949ca9c8e954b65d2abe, type: 3}
   m_PrefabInstance: {fileID: 5978078541313072864}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1410657047580066298
+--- !u!64 &3680937094518572453
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
