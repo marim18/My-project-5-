@@ -79,7 +79,7 @@ int tempcheckythingy = 0;
         {
             StopWalking();
 
-           MeleeAttack();
+           await MeleeAttack();
             cooldownTimer = 0f;
         }
         else if (distance <= meleeRange)
@@ -94,7 +94,7 @@ int tempcheckythingy = 0;
       
     }
 
-    void MeleeAttack()
+    async Task MeleeAttack()
     {
         Debug.Log("Boss is performing a melee attack!");
 
@@ -111,6 +111,7 @@ int tempcheckythingy = 0;
 
            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
+            await Task.Delay(500);
              // Wait for the hit animation to play
         // Replace with actual animation duration
         }
@@ -124,7 +125,7 @@ int tempcheckythingy = 0;
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss used punch!");
             // Wait for the punch animation to play
-            //await Task.Delay(500);  // Replace with actual animation duration
+            await Task.Delay(500);  // Replace with actual animation duration
         }
     }
 
