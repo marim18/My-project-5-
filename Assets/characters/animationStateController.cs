@@ -4,10 +4,13 @@ public class animationStateController : MonoBehaviour
 {
    public Animator animator;
 
-    int isWalkingHash;
+   int isWalkingHash;
     int isRunningHash;
     int jumpHash;
     int swordAttackHash;
+    public bool isWalking;
+    public bool isRunning;
+    
    
 
     public float walkSpeed = 1.5f;
@@ -33,8 +36,8 @@ public class animationStateController : MonoBehaviour
     void Update()
     {  
         Debug.Log("Update method called in Animation State Controller.");
-         bool isWalking = animator.GetBool(isWalkingHash);
-        bool isRunning = animator.GetBool(isRunningHash);
+        isWalking = animator.GetBool(isWalkingHash);
+        isRunning = animator.GetBool(isRunningHash);
 
         bool forwardPressed = Input.GetKey(KeyCode.W);
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
