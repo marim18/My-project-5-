@@ -10,6 +10,8 @@ public class AnimationStateController : MonoBehaviour
     int swordAttackHash;
     public bool isWalking =false;
     public bool isRunning = false;
+    float inputaxisy;
+    public float inputaxisx;
     
    
 
@@ -39,7 +41,10 @@ public class AnimationStateController : MonoBehaviour
         isWalking = animator.GetBool(isWalkingHash);
         isRunning = animator.GetBool(isRunningHash);
 
-        bool forwardPressed = Input.GetKey(KeyCode.W);
+        inputaxisy = Input.GetAxis("Vertical");   
+        inputaxisx= Input.GetAxis("Horizontal");
+        bool keyboardinput = inputaxisy != 0 || inputaxisx != 0;
+       
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
 
         bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
@@ -47,27 +52,28 @@ public class AnimationStateController : MonoBehaviour
 
 
         // Walking animation
-        if (!isWalking && forwardPressed)
+        if (!isWalking && keyboardinput && !runPressed)
         {
             animator.SetBool(isWalkingHash, true);
             Debug.Log("Walking animation triggered.");
         }
 
-        if (isWalking && !forwardPressed)
+        if (isWalking && !keyboardinput)
         {
             animator.SetBool(isWalkingHash, false);
         }
 
         // Running animation
-        if (!isRunning && forwardPressed && runPressed)
+        if (!isRunning && keyboardinput && runPressed)
         {
             animator.SetBool(isRunningHash, true);
         }
 
-        if (isRunning && (!forwardPressed || !runPressed))
+        if (isRunning && (!keyboardinput || !runPressed))
         {
             animator.SetBool(isRunningHash, false);
         }
+        
 
         // Jump animation
         if (jumpPressed)
@@ -82,12 +88,19 @@ public class AnimationStateController : MonoBehaviour
         }
 
         // Actual character movement
-        if (forwardPressed)
+        if (keyboardinput)
         {
             float currentSpeed = runPressed ? runSpeed : walkSpeed;
+           
 
-            transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+            Vector3 movement = new Vector3(-inputaxisx, 0, -inputaxisy).normalized * currentSpeed * Time.deltaTime;
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
+            transform.position += movement;
+
         }
+
+       
     }
     
 }
