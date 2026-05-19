@@ -12,12 +12,12 @@ public class Bossscript : MonoBehaviour
 
     Debug.Log("Animator Controller: " + animator.runtimeAnimatorController.name);
 
-    foreach (var parameter in animator.parameters)
-    {
+        foreach (var parameter in animator.parameters)
+        {
         Debug.Log("PARAMETER: " + parameter.name + " TYPE: " + parameter.type);
+         }
     }
-    }
-    }
+}
 
     // Update is called once per frame
 

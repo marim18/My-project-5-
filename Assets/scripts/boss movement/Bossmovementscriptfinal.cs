@@ -18,6 +18,7 @@ int tempcheckythingy = 0;
     public float cooldown = 3f;
 
     private float cooldownTimer = 0f;
+    
 
     private GameObject player;
     private Rigidbody rb;
@@ -31,10 +32,12 @@ int tempcheckythingy = 0;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip gruntSound;
     public bool walksoundplayed = false;
+    Collider collidern;
 
     void Start()
     { animatorboss = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        collidern = GetComponent<Collider>();
         if (rb == null)
         {
             Debug.LogError("No Rigidbody component found on the boss!");
@@ -61,7 +64,7 @@ int tempcheckythingy = 0;
     async Task Update()
     {
         
-       
+      
         if (player == null)
            Debug.LogError("Player reference is missing!");
 
@@ -81,6 +84,7 @@ int tempcheckythingy = 0;
 
            await MeleeAttack();
             cooldownTimer = 0f;
+           
         }
         else if (distance <= meleeRange)
         {
@@ -125,6 +129,7 @@ int tempcheckythingy = 0;
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss used punch!");
             // Wait for the punch animation to play
+         
             await Task.Delay(500);  // Replace with actual animation duration
         }
     }
@@ -190,17 +195,22 @@ int tempcheckythingy = 0;
         AudioSource.PlayClipAtPoint(dieSound, transform.position);
         
     }
-    void triggerOnCollide(Collision collision)
+   void onCollisionEnter(Collision collision)
     { Debug.Log("Boss collided with: " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
-            
-            animatorboss.SetTrigger("Hit");
-           // Wait for the hit animation to play
-            animatorboss.SetTrigger("Hit2");
-            Debug.Log("Boss collided with player, dealing damage!");
-            player.GetComponent<Playerhello>().takedamage((int)damage);
+           // if (cooldowndowntimer <= 0.2f)
+            //{
+                Debug.Log("Boss collided with player, dealing damage!");
+                player.GetComponent<Playerhello>().takedamage((int)damage);
+            //}
         }
+    }
+    public void takedamage(float damageamount)
+    {
+        currentHealth -= damageamount;
+        Debug.Log("Boss took " + damageamount + " damage! Current health: " + currentHealth);
+        AudioSource.PlayClipAtPoint(hitSound, transform.position);
     }
 }
 
