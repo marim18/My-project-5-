@@ -8,7 +8,7 @@ public class Bossmovementscriptfinal : MonoBehaviour
 
     public GameObject FireBall;
 int tempcheckythingy = 0;
-    public float currentHealth = 100f;
+    private float currentHealth = 100f;
     public float maxHealth = 100f;
     public float damage = 10f;
     public float speed = 5f;
@@ -32,7 +32,7 @@ int tempcheckythingy = 0;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip gruntSound;
     public bool walksoundplayed = false;
-   [SerializeField] public UnityEngine.UI.Slider healthbarobject;
+   [SerializeField] private UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
  
 
@@ -217,12 +217,21 @@ int tempcheckythingy = 0;
             }
         }
     }
-    public void takedamage(float damageamount)
+    public void Bosstakedamage(int damageamount)
     {
+        
         currentHealth -= damageamount;
         Debug.Log("Boss took " + damageamount + " damage! Current health: " + currentHealth);
         AudioSource.PlayClipAtPoint(hitSound, transform.position);
         healthbarobject.value = Mathf.Clamp(currentHealth, 0, maxHealth);
+        Debug.Log("Boss health bar updated: " + healthbarobject.value + "/" + maxHealth +"bossbar is; " + healthbarobject);
+        Debug.Log("Slider object: " + healthbarobject.name);
+Debug.Log("Fill Rect: " + healthbarobject.fillRect.name);
+Debug.Log("Fill Parent: " + healthbarobject.fillRect.parent.parent.name);
+          if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 }
 

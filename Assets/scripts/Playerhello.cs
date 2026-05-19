@@ -6,7 +6,8 @@ public class Playerhello : MonoBehaviour
     public int maxhealth = 100;
     public int playerdamage = 10;
     private int currenthealth;
-    public Slider healthbarobject;
+       [SerializeField] private UnityEngine.UI.Slider healthbarobject;
+
     public GameObject player;
     [SerializeField]
     private AudioClip AttackSound;
@@ -56,7 +57,7 @@ public class Playerhello : MonoBehaviour
      
     }
 
-    public void takedamage  (int damage)
+    public void Playertakedamage  (int damage)
     {
        
         int randomnoise = Random.Range(0, 3);
