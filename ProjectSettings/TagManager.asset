@@ -9,6 +9,7 @@ TagManager:
   - projectile
   - Boss
   - sword piece
+  - Healthbar
   layers:
   - Default
   - TransparentFX

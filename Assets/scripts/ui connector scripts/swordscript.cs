@@ -2,38 +2,78 @@ using UnityEngine;
 
 public class swordscript : MonoBehaviour
 {
+    public int Swordpieceid;
 
-    public int Swordpieceid; 
-    Rigidbody rigidbody;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool collected = false;
+    private SwordProgressManager swordProgressManager;
+
     void Start()
-    { if (GetComponent<Rigidbody>() == null)
+    {
+        swordProgressManager = FindFirstObjectByType<SwordProgressManager>();
+
+        if (swordProgressManager == null)
         {
-            Debug.LogError("No Rigidbody component found on the sword piece!");
+            Debug.LogError("No SwordProgressManager found in the scene!");
         }
-        else
-        {
-            rigidbody = GetComponent<Rigidbody>();
-        }
+
         if (Swordpieceid == 0)
         {
-            Debug.Log("Sword piece ID is not set! Please assign a unique ID to this sword piece.");
+            Debug.LogWarning("Sword piece ID is not set! Give each piece a unique ID: 1, 2, 3, 4.");
         }
-    
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (collected) return;
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
+            collected = true;
+
             Debug.Log("Player picked up sword piece with ID: " + Swordpieceid);
-            // Add logic here to give the player the sword piece and update any relevant UI or game state
+
+            // Create sparkle effect at the position of the collected sword piece
+            CreatePickupEffect();
+
+            // Update progress bar, inventory, and sword upgrade logic
+            swordProgressManager.CollectSwordPiece(Swordpieceid);
+
+            // Hide/remove the collected sword piece from the scene
+            gameObject.SetActive(false);
         }
+    }
+
+    void CreatePickupEffect()
+    {
+        GameObject effectObject = new GameObject("SwordPiecePickupEffect");
+        effectObject.transform.position = transform.position;
+
+        ParticleSystem particleSystem = effectObject.AddComponent<ParticleSystem>();
+
+        var main = particleSystem.main;
+        main.duration = 0.6f;
+        main.startLifetime = 0.5f;
+        main.startSpeed = 2.5f;
+        main.startSize = 0.15f;
+        main.maxParticles = 30;
+        main.loop = false;
+
+        var emission = particleSystem.emission;
+        emission.rateOverTime = 0;
+        emission.SetBursts(new ParticleSystem.Burst[]
+        {
+            new ParticleSystem.Burst(0f, 25)
+        });
+
+        var shape = particleSystem.shape;
+        shape.shapeType = ParticleSystemShapeType.Sphere;
+        shape.radius = 0.4f;
+
+        var renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
+        renderer.renderMode = ParticleSystemRenderMode.Billboard;
+
+        particleSystem.Play();
+
+        Destroy(effectObject, 1.2f);
     }
 }

@@ -8,7 +8,7 @@ public class Bossmovementscriptfinal : MonoBehaviour
 
     public GameObject FireBall;
 int tempcheckythingy = 0;
-    public float currentHealth = 100f;
+    private float currentHealth = 100f;
     public float maxHealth = 100f;
     public float damage = 10f;
     public float speed = 5f;
@@ -17,9 +17,10 @@ int tempcheckythingy = 0;
     public float projectileRange = 10f;
     public float cooldown = 3f;
 
-    private float cooldownTimer = 0f;
+    public float cooldownTimer = 0f;
+    
 
-    private GameObject player;
+   [SerializeField] private GameObject player;
     private Rigidbody rb;
     public Animator animatorboss;
     [SerializeField] private AudioClip meleeAttackSound;
@@ -31,10 +32,17 @@ int tempcheckythingy = 0;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip gruntSound;
     public bool walksoundplayed = false;
+   [SerializeField] private UnityEngine.UI.Slider healthbarobject;
+    Collider collidern;
+ 
 
     void Start()
-    { animatorboss = GetComponent<Animator>();
+    {   currentHealth = maxHealth;
+        healthbarobject.maxValue = maxHealth;
+        healthbarobject.value = currentHealth;
+        animatorboss = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        collidern = GetComponent<Collider>();
         if (rb == null)
         {
             Debug.LogError("No Rigidbody component found on the boss!");
@@ -58,10 +66,11 @@ int tempcheckythingy = 0;
         } 
     }
 
-    async Task Update()
+    void Update()
     {
+
         
-       
+      
         if (player == null)
            Debug.LogError("Player reference is missing!");
 
@@ -79,8 +88,9 @@ int tempcheckythingy = 0;
         {
             StopWalking();
 
-           await MeleeAttack();
+           MeleeAttack();
             cooldownTimer = 0f;
+           
         }
         else if (distance <= meleeRange)
         {
@@ -93,8 +103,9 @@ int tempcheckythingy = 0;
         }
       
     }
+    
 
-    async Task MeleeAttack()
+    void  MeleeAttack()
     {
         Debug.Log("Boss is performing a melee attack!");
 
@@ -108,10 +119,11 @@ int tempcheckythingy = 0;
             {
                 AudioSource.PlayClipAtPoint(gruntSound, transform.position);
             }
-
+            
            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
-            await Task.Delay(500);
+            
+          
              // Wait for the hit animation to play
         // Replace with actual animation duration
         }
@@ -121,17 +133,19 @@ int tempcheckythingy = 0;
             {
                 AudioSource.PlayClipAtPoint(gruntSound, transform.position);
             }
+            
             AudioSource.PlayClipAtPoint(meleeAttackSound, transform.position);
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss used punch!");
             // Wait for the punch animation to play
-            await Task.Delay(500);  // Replace with actual animation duration
+         
+           // Replace with actual animation duration
         }
     }
 
 
 
-    async Task LaunchProjectile()
+    void LaunchProjectile()
     {
         if (FireBall == null)
             Debug.LogError("FireBall prefab is not assigned!");
@@ -141,7 +155,7 @@ int tempcheckythingy = 0;
             transform.position + transform.forward,
             Quaternion.identity
         );
-        await Task.Delay(1000);  // Replace with actual projectile duration
+        // Replace with actual projectile duration
     }
 
    void WalkTowardsPlayer()
@@ -190,16 +204,32 @@ int tempcheckythingy = 0;
         AudioSource.PlayClipAtPoint(dieSound, transform.position);
         
     }
-    void triggerOnCollide(Collision collision)
+   void OnCollisionEnter(Collision collision)
     { Debug.Log("Boss collided with: " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
             
-            animatorboss.SetTrigger("Hit");
-           // Wait for the hit animation to play
-            animatorboss.SetTrigger("Hit2");
-            Debug.Log("Boss collided with player, dealing damage!");
-            player.GetComponent<Playerhello>().takedamage((int)damage);
+              if (cooldownTimer >= cooldown)
+            {
+                Debug.Log("Boss collided with player, dealing damage!");
+
+               MeleeAttack();
+            }
+        }
+    }
+    public void Bosstakedamage(int damageamount)
+    {
+        
+        currentHealth -= damageamount;
+        Debug.Log("Boss took " + damageamount + " damage! Current health: " + currentHealth);
+        AudioSource.PlayClipAtPoint(hitSound, transform.position);
+        healthbarobject.value = Mathf.Clamp(currentHealth, 0, maxHealth);
+        Debug.Log("Boss health bar updated: " + healthbarobject.value + "/" + maxHealth +"bossbar is; " + healthbarobject);
+        Debug.Log("Slider object: " + healthbarobject.name);
+
+          if (currentHealth <= 0)
+        {
+            Die();
         }
     }
 }
