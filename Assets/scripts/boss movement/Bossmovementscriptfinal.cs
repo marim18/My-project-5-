@@ -20,7 +20,7 @@ int tempcheckythingy = 0;
     private float cooldownTimer = 0f;
     
 
-    private GameObject player;
+   [SerializeField] private GameObject player;
     private Rigidbody rb;
     public Animator animatorboss;
     [SerializeField] private AudioClip meleeAttackSound;
@@ -32,10 +32,14 @@ int tempcheckythingy = 0;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip gruntSound;
     public bool walksoundplayed = false;
+   [SerializeField] public UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
 
     void Start()
-    { animatorboss = GetComponent<Animator>();
+    {   currentHealth = maxHealth;
+        healthbarobject.maxValue = maxHealth;
+        healthbarobject.value = currentHealth;
+        animatorboss = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         collidern = GetComponent<Collider>();
         if (rb == null)
@@ -61,8 +65,9 @@ int tempcheckythingy = 0;
         } 
     }
 
-    async Task Update()
+    void Update()
     {
+
         
       
         if (player == null)
@@ -82,7 +87,7 @@ int tempcheckythingy = 0;
         {
             StopWalking();
 
-           await MeleeAttack();
+           MeleeAttack();
             cooldownTimer = 0f;
            
         }
@@ -97,8 +102,9 @@ int tempcheckythingy = 0;
         }
       
     }
+    
 
-    async Task MeleeAttack()
+    void  MeleeAttack()
     {
         Debug.Log("Boss is performing a melee attack!");
 
@@ -115,7 +121,7 @@ int tempcheckythingy = 0;
 
            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
-            await Task.Delay(500);
+          
              // Wait for the hit animation to play
         // Replace with actual animation duration
         }
@@ -130,13 +136,13 @@ int tempcheckythingy = 0;
             Debug.Log("Boss used punch!");
             // Wait for the punch animation to play
          
-            await Task.Delay(500);  // Replace with actual animation duration
+           // Replace with actual animation duration
         }
     }
 
 
 
-    async Task LaunchProjectile()
+    void LaunchProjectile()
     {
         if (FireBall == null)
             Debug.LogError("FireBall prefab is not assigned!");
@@ -146,7 +152,7 @@ int tempcheckythingy = 0;
             transform.position + transform.forward,
             Quaternion.identity
         );
-        await Task.Delay(1000);  // Replace with actual projectile duration
+        // Replace with actual projectile duration
     }
 
    void WalkTowardsPlayer()
@@ -195,14 +201,15 @@ int tempcheckythingy = 0;
         AudioSource.PlayClipAtPoint(dieSound, transform.position);
         
     }
-   void onCollisionEnter(Collision collision)
+   void OnCollisionEnter(Collision collision)
     { Debug.Log("Boss collided with: " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
            // if (cooldowndowntimer <= 0.2f)
             //{
                 Debug.Log("Boss collided with player, dealing damage!");
-                player.GetComponent<Playerhello>().takedamage((int)damage);
+
+                collision.gameObject.GetComponent<Playerhello>().takedamage((int)damage);
             //}
         }
     }
@@ -211,6 +218,7 @@ int tempcheckythingy = 0;
         currentHealth -= damageamount;
         Debug.Log("Boss took " + damageamount + " damage! Current health: " + currentHealth);
         AudioSource.PlayClipAtPoint(hitSound, transform.position);
+        healthbarobject.value = Mathf.Clamp(currentHealth, 0, maxHealth);
     }
 }
 

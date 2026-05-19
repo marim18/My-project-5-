@@ -97,7 +97,6 @@ public class AnimationStateController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
             transform.position += movement;
-            Debug.Log("InputX: " + inputaxisx + " InputY: " + inputaxisy + " Movement: " + movement);
 
         }
 
