@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1144180346656197373
+--- !u!1 &7968354118235195637
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,59 +8,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 782755585654323064}
-  - component: {fileID: 6631483740357136588}
-  - component: {fileID: 7278471322628796999}
-  - component: {fileID: 5203065915624486315}
+  - component: {fileID: 3492511458312805502}
+  - component: {fileID: 745479766268994043}
+  - component: {fileID: 4641414696300801740}
+  - component: {fileID: 9049894326624101121}
+  - component: {fileID: 2149692826212174916}
   m_Layer: 0
-  m_Name: polySurface31.004
+  m_Name: Swordpiece1 1
   m_TagString: sword piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &782755585654323064
+--- !u!4 &3492511458312805502
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144180346656197373}
+  m_GameObject: {fileID: 7968354118235195637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29658502, y: -0.18452066, z: 0.048284333}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 1.822, y: 0.807, z: -7.898}
+  m_LocalScale: {x: 19, y: 19, z: 19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6631483740357136588
+--- !u!33 &745479766268994043
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144180346656197373}
-  m_Mesh: {fileID: -4699403255003061886, guid: 98785f6f916491c43aa8a0296e25ce91, type: 3}
---- !u!114 &7278471322628796999
+  m_GameObject: {fileID: 7968354118235195637}
+  m_Mesh: {fileID: 8715962357585579339, guid: 98785f6f916491c43aa8a0296e25ce91, type: 3}
+--- !u!114 &4641414696300801740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144180346656197373}
+  m_GameObject: {fileID: 7968354118235195637}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8e5b15bb405b8d4381fa1c27a3aaeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::swordscript
---- !u!23 &5203065915624486315
+  Swordpieceid: 1
+--- !u!23 &9049894326624101121
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144180346656197373}
+  m_GameObject: {fileID: 7968354118235195637}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -103,3 +105,24 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2149692826212174916
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7968354118235195637}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.021511242, y: 0.010340973, z: 0.0020749045}
+  m_Center: {x: 0, y: -0.038873393, z: 1.7462297e-10}
