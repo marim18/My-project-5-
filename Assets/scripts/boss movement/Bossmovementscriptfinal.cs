@@ -226,8 +226,7 @@ int tempcheckythingy = 0;
         healthbarobject.value = Mathf.Clamp(currentHealth, 0, maxHealth);
         Debug.Log("Boss health bar updated: " + healthbarobject.value + "/" + maxHealth +"bossbar is; " + healthbarobject);
         Debug.Log("Slider object: " + healthbarobject.name);
-Debug.Log("Fill Rect: " + healthbarobject.fillRect.name);
-Debug.Log("Fill Parent: " + healthbarobject.fillRect.parent.parent.name);
+
           if (currentHealth <= 0)
         {
             Die();
