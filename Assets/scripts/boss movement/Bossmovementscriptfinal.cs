@@ -17,7 +17,7 @@ int tempcheckythingy = 0;
     public float projectileRange = 10f;
     public float cooldown = 3f;
 
-    private float cooldownTimer = 0f;
+    public float cooldownTimer = 0f;
     
 
    [SerializeField] private GameObject player;
@@ -34,6 +34,7 @@ int tempcheckythingy = 0;
     public bool walksoundplayed = false;
    [SerializeField] public UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
+ 
 
     void Start()
     {   currentHealth = maxHealth;
@@ -118,9 +119,10 @@ int tempcheckythingy = 0;
             {
                 AudioSource.PlayClipAtPoint(gruntSound, transform.position);
             }
-
+            
            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
+            
           
              // Wait for the hit animation to play
         // Replace with actual animation duration
@@ -131,6 +133,7 @@ int tempcheckythingy = 0;
             {
                 AudioSource.PlayClipAtPoint(gruntSound, transform.position);
             }
+            
             AudioSource.PlayClipAtPoint(meleeAttackSound, transform.position);
             animatorboss.SetTrigger("Hit2");
             Debug.Log("Boss used punch!");
@@ -205,12 +208,13 @@ int tempcheckythingy = 0;
     { Debug.Log("Boss collided with: " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
-           // if (cooldowndowntimer <= 0.2f)
-            //{
+            
+              if (cooldownTimer >= cooldown)
+            {
                 Debug.Log("Boss collided with player, dealing damage!");
 
-                collision.gameObject.GetComponent<Playerhello>().takedamage((int)damage);
-            //}
+               MeleeAttack();
+            }
         }
     }
     public void takedamage(float damageamount)

@@ -5,7 +5,7 @@ public class Playerhello : MonoBehaviour
 {
     public int maxhealth = 100;
     public int playerdamage = 10;
-    public int currenthealth;
+    private int currenthealth;
     public Slider healthbarobject;
     public GameObject player;
     [SerializeField]
@@ -23,6 +23,7 @@ public class Playerhello : MonoBehaviour
     [SerializeField] private AudioClip Landingsfx;
     [SerializeField] private AudioClip SwordAttackSfx;
     [SerializeField] private AudioClip PlayerDieSfx;
+   
 
      void Awake()
     {
@@ -52,12 +53,12 @@ public class Playerhello : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+     
     }
 
     public void takedamage  (int damage)
     {
-        Debug.Log("Player is taking damage: " + damage + " current health: " + currenthealth);
+       
         int randomnoise = Random.Range(0, 3);
         if (randomnoise == 0)        {
              AudioSource.PlayClipAtPoint(Grunt, transform.position);
@@ -65,7 +66,7 @@ public class Playerhello : MonoBehaviour
         else if (randomnoise == 1)
         {
               AudioSource.PlayClipAtPoint(panting, transform.position);  
-              }
+        }
         AudioSource.PlayClipAtPoint(damagesound, transform.position);
         currenthealth -= damage;
         Debug.Log("Player took " + damage + " damage. Current health: " + currenthealth);
@@ -75,7 +76,7 @@ public class Playerhello : MonoBehaviour
             Die();
         }
     }
-    public void dodamage (int damage , GameObject enemy)
+    /*public void dodamage (int damage , GameObject enemy)
     {
         Debug.Log("Player is doing damage: " + damage + " current health: " + currenthealth);
         int randomnoise = Random.Range(0, 3);
@@ -91,7 +92,7 @@ public class Playerhello : MonoBehaviour
         Debug.Log("Player dealt " + damage + " damage to the enemy.");
         enemy.GetComponent<Bossmovementscriptfinal>().takedamage(damage);
         // Add logic to apply damage to the enemy here
-    }
+    } */
     public void Die()
     {
         AudioSource.PlayClipAtPoint(PlayerDieSfx, transform.position);
@@ -99,7 +100,7 @@ public class Playerhello : MonoBehaviour
         
         // Add death logic here (e.g., respawn, game over screen, etc.)
     }
-    void onCollisionEnter(Collision collision)
+    /*void onCollisionEnter(Collision collision)
     {
         Debug.Log("Player collided with " + collision.gameObject.name + ", taking damage!");
         if (collision.gameObject.CompareTag("Boss"))
@@ -108,6 +109,6 @@ public class Playerhello : MonoBehaviour
             dodamage(playerdamage, collision.gameObject);
         
         }
-    }
+    }*/
     
 }

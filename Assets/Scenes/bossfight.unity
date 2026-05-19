@@ -265,9 +265,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7044869917211354905, guid: 04edd4aec6c78bb4dbb2c83cd02f5cc1, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6788911539481273265, guid: 04edd4aec6c78bb4dbb2c83cd02f5cc1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2139727766}
+      addedObject: {fileID: 1056634110}
   m_SourcePrefab: {fileID: 100100000, guid: 04edd4aec6c78bb4dbb2c83cd02f5cc1, type: 3}
 --- !u!114 &663421014 stripped
 MonoBehaviour:
@@ -347,6 +347,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6160044405675047179, guid: 04edd4aec6c78bb4dbb2c83cd02f5cc1, type: 3}
   m_PrefabInstance: {fileID: 656115268}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1056634110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285903786}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.39, y: 1.53, z: 0.53}
+  m_Center: {x: -0.03, y: 1, z: -0.0052534305}
 --- !u!1001 &1063958048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -525,7 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8706088009250475920, guid: 4d1df64ce4a35a64194f86a00ddc6f09, type: 3}
       propertyPath: m_TargetDisplay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9010894970067857928, guid: 4d1df64ce4a35a64194f86a00ddc6f09, type: 3}
       propertyPath: m_TagString
@@ -914,34 +935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!1 &2139727762 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7044869917211354905, guid: 04edd4aec6c78bb4dbb2c83cd02f5cc1, type: 3}
-  m_PrefabInstance: {fileID: 656115268}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &2139727766
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2139727762}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.03
-  m_Height: 0
-  m_Direction: 2
-  m_Center: {x: 0.00029703006, y: -0.00031304473, z: -0.0052534305}
 --- !u!1 &2146535695
 GameObject:
   m_ObjectHideFlags: 0
