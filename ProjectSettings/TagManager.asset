@@ -12,6 +12,8 @@ TagManager:
   - Healthbar
   - Enemy
   - Startbosstrigger
+  - Instantdeath
+  - endscreen
   layers:
   - Default
   - TransparentFX

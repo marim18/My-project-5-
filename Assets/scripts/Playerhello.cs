@@ -25,7 +25,7 @@ public class Playerhello : MonoBehaviour
     [SerializeField] private AudioClip SwordAttackSfx;
     [SerializeField] private AudioClip PlayerDieSfx;
     [SerializeField] private GameObject weapon;
-   
+    private GameObject Gameover;
 
      void Awake()
     {
@@ -35,7 +35,7 @@ public class Playerhello : MonoBehaviour
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {  Gameover = GameObject.FindGameObjectWithTag("endscreen");
         weapon.GetComponent<Collider>().enabled = false; // Disable the weapon's collider at the start
         healthbarobject.maxValue = maxhealth;
         healthbarobject.value = currenthealth;
@@ -99,7 +99,9 @@ public class Playerhello : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(PlayerDieSfx, transform.position);
         Debug.Log("Player has died.");
-        return;
+         
+          Gameover.SetActive(!Gameover.activeSelf);
+          Gameover.AudioSource.Play();
         
         // Add death logic here (e.g., respawn, game over screen, etc.)
     }
