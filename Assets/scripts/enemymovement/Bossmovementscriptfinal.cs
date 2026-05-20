@@ -202,6 +202,7 @@ int tempcheckythingy = 0;
         animatorboss.SetTrigger("Die");
         Debug.Log("Boss is dead!");
         AudioSource.PlayClipAtPoint(dieSound, transform.position);
+        return;
         
     }
    void OnCollisionEnter(Collision collision)
