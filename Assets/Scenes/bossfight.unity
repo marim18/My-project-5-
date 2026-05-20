@@ -1151,6 +1151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6937276329501988182, guid: 4d1df64ce4a35a64194f86a00ddc6f09, type: 3}
+      propertyPath: m_TagString
+      value: Dialoguebox
+      objectReference: {fileID: 0}
     - target: {fileID: 7564149410155680520, guid: 4d1df64ce4a35a64194f86a00ddc6f09, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2381,7 +2385,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c267a09e073fb494bb30346229c66cab, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
