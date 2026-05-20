@@ -48,7 +48,7 @@ int tempcheckythingy = 0;
             Debug.LogError("No Rigidbody component found on the boss!");
         }
         animatorboss.SetFloat("Walk", 0);
-       // animator.SetTrigger("IdleAction");
+       animatorboss.SetBool("sleep", true);
        
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -87,7 +87,6 @@ int tempcheckythingy = 0;
         if (distance <= meleeRange && cooldownTimer >= cooldown)
         {
             StopWalking();
-
            MeleeAttack();
             cooldownTimer = 0f;
            
@@ -231,6 +230,17 @@ int tempcheckythingy = 0;
           if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+    void onTriggerEnter(Collider collision)
+    {
+        if (animatorboss.GetCurrentAnimatorStateInfo(0).IsName("Sleep") && collision.CompareTag("Startbosstrigger"))
+        {
+           
+            animatorboss.SetBool("sleep", false);
+            animatorboss.SetTrigger("EndSleep");
+            animatorboss.SetTrigger("enrage");
+            AudioSource.PlayClipAtPoint(ragesound, transform.position);
         }
     }
 }

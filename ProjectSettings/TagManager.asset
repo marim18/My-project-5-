@@ -11,6 +11,7 @@ TagManager:
   - sword piece
   - Healthbar
   - Enemy
+  - Startbosstrigger
   layers:
   - Default
   - TransparentFX
