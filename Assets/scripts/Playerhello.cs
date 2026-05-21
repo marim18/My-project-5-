@@ -27,6 +27,7 @@ public class Playerhello : MonoBehaviour
     [SerializeField] private GameObject weapon;
     
     public GameObject Gameover;
+    //public Gameobject Gamemanager;
 
      void Awake()
     {
@@ -106,10 +107,11 @@ public class Playerhello : MonoBehaviour
             
         }
         else{
-        Gameover.SetActive(!Gameover.activeSelf);
+       // Gameover.SetActive(!Gameover.activeSelf);
         
         
               Debug.Log("Gameover screen activated, playing gameover sound.");
+              GameManager.Instance.Gameover();
               Gameover.GetComponent<AudioSource>().Play();
         
         }

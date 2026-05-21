@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Storyplayer : MonoBehaviour
 {
+    public Gameobject dialogue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +20,8 @@ public class Storyplayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player entered story trigger, playing story!" + collision.gameObject.name);
+            
+            dialogue();
             
         }
     }
