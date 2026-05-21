@@ -25,7 +25,7 @@ public class Playerhello : MonoBehaviour
     [SerializeField] private AudioClip SwordAttackSfx;
     [SerializeField] private AudioClip PlayerDieSfx;
     [SerializeField] private GameObject weapon;
-    Rigidbody rigidbody;
+
     public GameObject Gameover;
     //public Gameobject Gamemanager;
 

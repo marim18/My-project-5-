@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Hitboxscript : MonoBehaviour
 {
-   [SerializeField] private GameObject limb;
+   //[SerializeField] private GameObject limb;
    [SerializeField] public bool isboss = true;
    [SerializeField] public bool isenemy = false;
     private Collider hitboxcollider;
@@ -25,7 +25,9 @@ public class Hitboxscript : MonoBehaviour
     }
    public void hitboxenabled()
     {
-        limb.GetComponent<Collider>().enabled = true;
+       
+       
+       // limb.GetComponent<Collider>().enabled = true;
     }
 
      void OnTriggerEnter(Collider collision)

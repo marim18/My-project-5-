@@ -6,8 +6,6 @@ public class Mobscript : MonoBehaviour
     [SerializeField] private float speed = 1f; // Speed of the mob
     [SerializeField] private Transform target; // Target to follow
     [SerializeField] private float stoppingDistance = 1f; // Distance at which the mob stops moving towards the target
-    [SerializeField] private float retreatDistance = 0.5f; // Distance at which the mob starts retreating from the target
-    [SerializeField] private float retreatSpeed = 3f; // Speed at which the mob retreats from the target
     [SerializeField] private float attackRange = 1f; // Range at which the mob can attack the target
     [SerializeField] private float attackCooldown = 2f; // Cooldown time between attacks
     [SerializeField] private int damage = 10; // Damage dealt to the target when attacking
@@ -109,7 +107,7 @@ public class Mobscript : MonoBehaviour
         if (health <= 0f)
         {
             anim.SetTrigger("death");
-            Destroy(gameObject); // Call the Die method if health drops to 0 or below
+            Destroy(); // Call the Die method if health drops to 0 or below
         }
     }
 }

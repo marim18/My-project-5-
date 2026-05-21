@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 public class Healthbar : MonoBehaviour
-{ /*
+{ 
     [SerializeField] public GameObject owner;
     [SerializeField] public UnityEngine.UI.Slider healthbarobject;
     private Healthbar healthbar;
@@ -10,7 +10,6 @@ public class Healthbar : MonoBehaviour
     void Start()
     {
       //  getobjectwtihtag getobjectwthtag = new getobjectwithtag(healthbar);
-       gameobject healthbar = getobjectwthtag.getobjectwithtag(healthbar);
         
             if (healthbarobject == null)        {
                 Debug.LogError("Healthbar GameObject reference is missing!");
@@ -26,7 +25,7 @@ public class Healthbar : MonoBehaviour
         healthbar.value = maxHealth;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         owner = GameObject.FindWithTag("Boss");
@@ -41,9 +40,5 @@ public class Healthbar : MonoBehaviour
     
 
 
-        // Here you would typically update the health bar's visual representation based on the owner's health
-        // For example, if the owner has a health component, you could do something like:
-        // float healthPercentage = owner.GetComponent<HealthComponent>().currentHealth / owner.GetComponent<HealthComponent>().maxHealth;
-        // Update the health bar UI based on healthPercentage
-    }Æ*/
+    }
 }
