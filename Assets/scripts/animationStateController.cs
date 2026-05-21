@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
 {
-   public Animator animator;
+    public Animator animator;
 
-   int isWalkingHash;
+    int isWalkingHash;
     int isRunningHash;
     int jumpHash;
     int swordAttackHash;
-    public bool isWalking =false;
+    public bool isWalking = false;
     public bool isRunning = false;
     float inputaxisy;
     public float inputaxisx;
-    
-   
+
+
 
     public float walkSpeed = 1.5f;
     public float runSpeed = 4f;
 
-       
+
     void Start()
     {
-       Debug.Log("Animation State Controller started successfully."); 
+        Debug.Log("Animation State Controller started successfully.");
         animator = GetComponent<Animator>();
         if (animator == null)
         {
@@ -31,20 +31,20 @@ public class AnimationStateController : MonoBehaviour
         isWalkingHash = Animator.StringToHash("IsWalking");
         isRunningHash = Animator.StringToHash("IsRunning");
         jumpHash = Animator.StringToHash("Jump");
-        swordAttackHash = Animator.StringToHash("SwordAttack"); 
-       
+        swordAttackHash = Animator.StringToHash("SwordAttack");
+
     }
 
     void Update()
-    {  
+    {
         Debug.Log("Update method called in Animation State Controller.");
         isWalking = animator.GetBool(isWalkingHash);
         isRunning = animator.GetBool(isRunningHash);
 
-        inputaxisy = Input.GetAxis("Vertical");   
-        inputaxisx= Input.GetAxis("Horizontal");
+        inputaxisy = Input.GetAxis("Vertical");
+        inputaxisx = Input.GetAxis("Horizontal");
         bool keyboardinput = inputaxisy != 0 || inputaxisx != 0;
-       
+
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
 
         bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
@@ -73,12 +73,15 @@ public class AnimationStateController : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
         }
-        
+
 
         // Jump animation
         if (jumpPressed)
         {
             animator.SetTrigger(jumpHash);
+
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+
         }
 
         // Sword animation
@@ -87,11 +90,13 @@ public class AnimationStateController : MonoBehaviour
             animator.SetTrigger(swordAttackHash);
         }
 
+
+
         // Actual character movement
         if (keyboardinput)
         {
             float currentSpeed = runPressed ? runSpeed : walkSpeed;
-           
+
 
             Vector3 movement = new Vector3(-inputaxisx, 0, -inputaxisy).normalized * currentSpeed * Time.deltaTime;
             Quaternion targetRotation = Quaternion.LookRotation(movement);
@@ -100,7 +105,7 @@ public class AnimationStateController : MonoBehaviour
 
         }
 
-       
+
     }
-    
+
 }
