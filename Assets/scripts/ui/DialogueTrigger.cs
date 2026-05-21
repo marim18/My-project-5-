@@ -10,7 +10,7 @@ public class DialogueTrigger : MonoBehaviour
     public GameObject Princess;
     public GameObject Player;
     public GameObject Boss;
-    public int interactiondistance = 3;
+    public float interactiondistance = 3f;
 
 void Start()
     {
@@ -40,9 +40,10 @@ void Start()
        
         void interaction()
 
-        {  float distance = Vector3.Distance(Princess.transform.position , Player.transform.position);
-
-             if (distance > interactiondistance)
+        { 
+             float distance = Vector3.Distance(Princess.transform.position , Player.transform.position);
+            Debug.Log("The distance is " + distance+ "i ran but " + interactiondistance);
+             if (distance <= interactiondistance)
             {
             dialogueSystem.gameObject.SetActive(true);
             dialogueSystem.StartDialogue(introDialogue.dialogue);

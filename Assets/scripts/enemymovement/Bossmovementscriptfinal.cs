@@ -35,10 +35,12 @@ int tempcheckythingy = 0;
    [SerializeField] private UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
     public bool dialogueforboss = false;
+   public DialogueTrigger bossdialgouguetrigger;
  
 
     void Start()
-    {   
+    {  
+        
         currentHealth = maxHealth;
         healthbarobject.maxValue = maxHealth;
         healthbarobject.value = currentHealth;
@@ -203,7 +205,9 @@ int tempcheckythingy = 0;
         animatorboss.SetTrigger("Die");
         Debug.Log("Boss is dead!");
         AudioSource.PlayClipAtPoint(dieSound, transform.position);
-        return;
+        
+        bossdialgouguetrigger.dialogueforwin();
+        
         
     }
    void OnCollisionEnter(Collision collision)
@@ -238,7 +242,15 @@ int tempcheckythingy = 0;
     {
         if (animatorboss.GetCurrentAnimatorStateInfo(0).IsName("Sleep") && collision.CompareTag("Startbosstrigger"))
         {
-            dialogueforboss = true;   
+            if(bossdialgouguetrigger == null)
+            {
+                Debug.Log("dialogue where");
+            }
+            else
+            {
+                bossdialgouguetrigger.dialogueforboss();
+            }
+            
             animatorboss.SetBool("sleep", false);
             animatorboss.SetTrigger("EndSleep");
             animatorboss.SetTrigger("enrage");

@@ -15,6 +15,7 @@ TagManager:
   - Instantdeath
   - endscreen
   - Dialoguebox
+  - Princess
   layers:
   - Default
   - TransparentFX
