@@ -19,7 +19,7 @@ public class Storyplayer : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player entered story trigger, playing story!" + collision.gameObject.name);
-            // play story here
+            
         }
     }
 }

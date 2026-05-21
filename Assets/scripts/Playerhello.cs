@@ -25,7 +25,8 @@ public class Playerhello : MonoBehaviour
     [SerializeField] private AudioClip SwordAttackSfx;
     [SerializeField] private AudioClip PlayerDieSfx;
     [SerializeField] private GameObject weapon;
-    private GameObject Gameover;
+    
+    public GameObject Gameover;
 
      void Awake()
     {
@@ -35,12 +36,7 @@ public class Playerhello : MonoBehaviour
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {  Gameover = GameObject.FindGameObjectWithTag("endscreen");
-    
-    if (Gameover == null)
-        {
-            Debug.LogError("No Gameover GameObject found! Please assign a GameObject with the 'endscreen' tag in the scene.");
-        }
+    { 
         weapon.GetComponent<Collider>().enabled = false; // Disable the weapon's collider at the start
         healthbarobject.maxValue = maxhealth;
         healthbarobject.value = currenthealth;
@@ -104,12 +100,11 @@ public class Playerhello : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(PlayerDieSfx, transform.position);
         Debug.Log("Player has died.");
-        if (Gameover != null){
-          Gameover.SetActive(!Gameover.activeSelf);
+        
            if (Gameover.activeSelf) {
               Debug.Log("Gameover screen activated, playing gameover sound.");
               Gameover.GetComponent<AudioSource>().Play();
-         } }
+          }
           else {
               Debug.LogError("gameroverscreen sound is not playing because no gameover screen was found");
           }

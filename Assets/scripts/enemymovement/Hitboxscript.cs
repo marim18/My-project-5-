@@ -12,7 +12,7 @@ public class Hitboxscript : MonoBehaviour
     {
         
         hitboxcollider = GetComponent<Collider>();
-        hitboxcollider.enabled = true; 
+        hitboxcollider.enabled = false; 
         if (hitboxcollider == null){
             Debug.LogError("Collider component not found on the hitbox object." + gameObject.name);
             return;
