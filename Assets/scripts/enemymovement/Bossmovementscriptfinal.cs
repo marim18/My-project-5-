@@ -34,7 +34,7 @@ int tempcheckythingy = 0;
     public bool walksoundplayed = false;
    [SerializeField] private UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
-    public bool dialogueforboss = false;
+    public bool bossisactive = false;
    public DialogueTrigger bossdialgouguetrigger;
  
 
