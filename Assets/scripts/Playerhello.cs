@@ -111,7 +111,7 @@ public class Playerhello : MonoBehaviour
         
         
               Debug.Log("Gameover screen activated, playing gameover sound.");
-              GameManager.Instance.Gameover();
+              //GameManager.Instance.Gameover();
               Gameover.GetComponent<AudioSource>().Play();
         
         }

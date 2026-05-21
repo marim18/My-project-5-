@@ -6841,6 +6841,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c9fbc58b29bfbb4692282872cd039fe, type: 3}
+--- !u!114 &3786082089656123837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9037645440316079377, guid: 1c9fbc58b29bfbb4692282872cd039fe, type: 3}
+  m_PrefabInstance: {fileID: 5325215451441790124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a02f28e26a145ff9bc608186e07bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
 --- !u!4 &8710877237636261984 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3532431308099917004, guid: 1c9fbc58b29bfbb4692282872cd039fe, type: 3}
@@ -6970,6 +6981,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5698439021994284935, guid: 9c4aae32b2602b2428946773555406f1, type: 3}
   m_PrefabInstance: {fileID: 7326280230260109756}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4443657597544667532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6343080411756980272, guid: 9c4aae32b2602b2428946773555406f1, type: 3}
+  m_PrefabInstance: {fileID: 7326280230260109756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a02f28e26a145ff9bc608186e07bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
 --- !u!1001 &7752991191249354705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7050,6 +7072,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2216455928398461832, guid: a2fdda8b11260534382b7aa5bfb09017, type: 3}
+      propertyPath: bossDialogue
+      value: 
+      objectReference: {fileID: 4443657597544667532}
+    - target: {fileID: 2216455928398461832, guid: a2fdda8b11260534382b7aa5bfb09017, type: 3}
+      propertyPath: introDialogue
+      value: 
+      objectReference: {fileID: 4772173056170864558}
+    - target: {fileID: 2216455928398461832, guid: a2fdda8b11260534382b7aa5bfb09017, type: 3}
+      propertyPath: dialogueSystem
+      value: 
+      objectReference: {fileID: 6470325159080651190}
+    - target: {fileID: 2216455928398461832, guid: a2fdda8b11260534382b7aa5bfb09017, type: 3}
+      propertyPath: pickupDialogue
+      value: 
+      objectReference: {fileID: 3786082089656123837}
     - target: {fileID: 2608279868432895417, guid: a2fdda8b11260534382b7aa5bfb09017, type: 3}
       propertyPath: m_Name
       value: GameManager 1
@@ -7166,3 +7204,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4776996523642764776, guid: 744eddb732704d64db18c3addc8fdab2, type: 3}
   m_PrefabInstance: {fileID: 9045362710434345761}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4772173056170864558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4593037655897398415, guid: 744eddb732704d64db18c3addc8fdab2, type: 3}
+  m_PrefabInstance: {fileID: 9045362710434345761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a02f28e26a145ff9bc608186e07bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
