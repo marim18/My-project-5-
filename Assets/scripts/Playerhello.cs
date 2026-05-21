@@ -6,7 +6,7 @@ public class Playerhello : MonoBehaviour
     public int maxhealth = 100;
     public int playerdamage = 10;
     private int currenthealth;
-       [SerializeField] private UnityEngine.UI.Slider healthbarobject;
+     public UnityEngine.UI.Slider healthbarobject;
 
     public GameObject player;
     [SerializeField]
@@ -25,7 +25,7 @@ public class Playerhello : MonoBehaviour
     [SerializeField] private AudioClip SwordAttackSfx;
     [SerializeField] private AudioClip PlayerDieSfx;
     [SerializeField] private GameObject weapon;
-    
+    Rigidbody rigidbody;
     public GameObject Gameover;
     //public Gameobject Gamemanager;
 

@@ -32,7 +32,7 @@ int tempcheckythingy = 0;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip gruntSound;
     public bool walksoundplayed = false;
-   [SerializeField] private UnityEngine.UI.Slider healthbarobject;
+    public UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
     public bool bossisactive = false;
    public DialogueTrigger bossdialgouguetrigger;
@@ -74,7 +74,10 @@ int tempcheckythingy = 0;
     {
 
         
-      
+      if(!bossisactive)
+        {
+            return;
+        }
         if (player == null)
            Debug.LogError("Player reference is missing!");
 
@@ -125,10 +128,7 @@ int tempcheckythingy = 0;
             
            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
-            
-          
-             // Wait for the hit animation to play
-        // Replace with actual animation duration
+        
         }
         else
         {
@@ -150,8 +150,8 @@ int tempcheckythingy = 0;
 
     void LaunchProjectile()
     {
-        if (FireBall == null)
-            Debug.LogError("FireBall prefab is not assigned!");
+        if (FireBall == null){
+            Debug.LogError("FireBall prefab is not assigned!");}
 
         Instantiate(
             FireBall,
@@ -238,10 +238,13 @@ int tempcheckythingy = 0;
             Die();
         }
     }
-    void onTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (animatorboss.GetCurrentAnimatorStateInfo(0).IsName("Sleep") && collision.CompareTag("Startbosstrigger"))
+        Debug.Log("mother i collided" + collision.tag);
+        if ( collision.CompareTag("Startbosstrigger"))
         {
+            
+            bossisactive =true; 
             if(bossdialgouguetrigger == null)
             {
                 Debug.Log("dialogue where");
@@ -254,9 +257,30 @@ int tempcheckythingy = 0;
             animatorboss.SetBool("sleep", false);
             animatorboss.SetTrigger("EndSleep");
             animatorboss.SetTrigger("enrage");
+
             AudioSource.PlayClipAtPoint(ragesound, transform.position);
             
         }
     }
+   public void ActivateBoss()
+    {
+         bossisactive =true; 
+            if(bossdialgouguetrigger == null)
+            {
+                Debug.Log("dialogue where");
+            }
+            else
+            {
+                bossdialgouguetrigger.dialogueforboss();
+            }
+            
+            animatorboss.SetBool("sleep", false);
+            animatorboss.SetTrigger("EndSleep");
+           animatorboss.SetTrigger("enrage");
+
+           AudioSource.PlayClipAtPoint(ragesound, transform.position);
+            
+    }
+    
 }
 
