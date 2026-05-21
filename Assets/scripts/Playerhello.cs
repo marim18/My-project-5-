@@ -24,7 +24,10 @@ public class Playerhello : MonoBehaviour
     [SerializeField] private AudioClip Landingsfx;
     [SerializeField] private AudioClip SwordAttackSfx;
     [SerializeField] private AudioClip PlayerDieSfx;
-   
+    [SerializeField] private GameObject weapon;
+    
+    public GameObject Gameover;
+    //public Gameobject Gamemanager;
 
      void Awake()
     {
@@ -34,8 +37,9 @@ public class Playerhello : MonoBehaviour
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    { 
         
+        weapon.GetComponent<Collider>().enabled = false; // Disable the weapon's collider at the start
         healthbarobject.maxValue = maxhealth;
         healthbarobject.value = currenthealth;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -98,7 +102,19 @@ public class Playerhello : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(PlayerDieSfx, transform.position);
         Debug.Log("Player has died.");
+        if (Gameover == null)
+        {
+            
+        }
+        else{
+       // Gameover.SetActive(!Gameover.activeSelf);
         
+        
+              Debug.Log("Gameover screen activated, playing gameover sound.");
+              //GameManager.Instance.Gameover();
+              Gameover.GetComponent<AudioSource>().Play();
+        
+        }
         // Add death logic here (e.g., respawn, game over screen, etc.)
     }
     /*void onCollisionEnter(Collision collision)
