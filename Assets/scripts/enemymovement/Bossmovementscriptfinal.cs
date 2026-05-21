@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-//i gave up and pasted my buggy code into chatgpt. The result was a mess, then i changed it considerably and simplified it.
+
 public class Bossmovementscriptfinal : MonoBehaviour
 {
 
@@ -274,9 +274,9 @@ int tempcheckythingy = 0;
                 bossdialgouguetrigger.dialogueforboss();
             }
             
-            animatorboss.SetBool("sleep", false);
-            animatorboss.SetTrigger("EndSleep");
-           animatorboss.SetTrigger("enrage");
+            animatorboss.SetBool("Sleep", false);
+            animatorboss.SetTrigger("SleepEnd");
+           animatorboss.SetTrigger("Rage");
 
            AudioSource.PlayClipAtPoint(ragesound, transform.position);
             
