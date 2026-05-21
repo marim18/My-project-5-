@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: cbeb240bd914040eab1b8dddcea561e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.71920735
+      value: 804.42
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cbeb240bd914040eab1b8dddcea561e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000000007368726
+      value: -3.35326
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cbeb240bd914040eab1b8dddcea561e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.57381
+      value: 717.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cbeb240bd914040eab1b8dddcea561e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -70,6 +70,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cbeb240bd914040eab1b8dddcea561e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 270998278111841342}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cbeb240bd914040eab1b8dddcea561e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6484593335557289497}
   m_SourcePrefab: {fileID: 100100000, guid: cbeb240bd914040eab1b8dddcea561e5, type: 3}
 --- !u!1 &5658032492045949832 stripped
 GameObject:
@@ -195,3 +198,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6484593335557289497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658032492045949832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cc23812c8506643927452c864fdb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Storyplayer

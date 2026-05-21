@@ -37,6 +37,7 @@ public class Playerhello : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     { 
+        
         weapon.GetComponent<Collider>().enabled = false; // Disable the weapon's collider at the start
         healthbarobject.maxValue = maxhealth;
         healthbarobject.value = currenthealth;
@@ -100,15 +101,18 @@ public class Playerhello : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(PlayerDieSfx, transform.position);
         Debug.Log("Player has died.");
+        if (Gameover == null)
+        {
+            
+        }
+        else{
+        Gameover.SetActive(!Gameover.activeSelf);
         
-           if (Gameover.activeSelf) {
+        
               Debug.Log("Gameover screen activated, playing gameover sound.");
               Gameover.GetComponent<AudioSource>().Play();
-          }
-          else {
-              Debug.LogError("gameroverscreen sound is not playing because no gameover screen was found");
-          }
         
+        }
         // Add death logic here (e.g., respawn, game over screen, etc.)
     }
     /*void onCollisionEnter(Collision collision)

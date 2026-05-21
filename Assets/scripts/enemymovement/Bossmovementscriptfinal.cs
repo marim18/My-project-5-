@@ -34,10 +34,12 @@ int tempcheckythingy = 0;
     public bool walksoundplayed = false;
    [SerializeField] private UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
+    public bool dialogueforboss = false;
  
 
     void Start()
-    {   currentHealth = maxHealth;
+    {   
+        currentHealth = maxHealth;
         healthbarobject.maxValue = maxHealth;
         healthbarobject.value = currentHealth;
         animatorboss = GetComponent<Animator>();
@@ -236,11 +238,12 @@ int tempcheckythingy = 0;
     {
         if (animatorboss.GetCurrentAnimatorStateInfo(0).IsName("Sleep") && collision.CompareTag("Startbosstrigger"))
         {
-           
+            dialogueforboss = true;   
             animatorboss.SetBool("sleep", false);
             animatorboss.SetTrigger("EndSleep");
             animatorboss.SetTrigger("enrage");
             AudioSource.PlayClipAtPoint(ragesound, transform.position);
+            
         }
     }
 }
