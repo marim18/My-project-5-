@@ -45,12 +45,14 @@ public class AnimationStateController : MonoBehaviour
 
         inputaxisy = Input.GetAxis("Vertical");   
         inputaxisx= Input.GetAxis("Horizontal");
+        
         bool keyboardinput = inputaxisy != 0 || inputaxisx != 0;
        
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
 
         bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
         bool swordPressed = Input.GetKeyDown(KeyCode.F);
+        bool down = Input.GetKey(KeyCode.S);
 
 
         // Walking animation
@@ -97,8 +99,13 @@ public class AnimationStateController : MonoBehaviour
         {
             float currentSpeed = runPressed ? runSpeed : walkSpeed;
            
+           float xaxis =inputaxisx;
+            if (!down)
+            {
+                xaxis = -inputaxisx;
+            }
 
-            Vector3 movement = new Vector3(-inputaxisx, 0, -inputaxisy).normalized * currentSpeed * Time.deltaTime;
+            Vector3 movement = new Vector3(xaxis, 0, -inputaxisy).normalized * currentSpeed * Time.deltaTime;
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
             transform.position += movement;

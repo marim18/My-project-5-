@@ -113,6 +113,7 @@ int tempcheckythingy = 0;
 
     void  MeleeAttack()
     {
+        
         Debug.Log("Boss is performing a melee attack!");
 
         int randomAttack = Random.Range(0, 2);
@@ -238,30 +239,7 @@ int tempcheckythingy = 0;
             Die();
         }
     }
-    void OnTriggerEnter(Collider collision)
-    {
-        Debug.Log("mother i collided" + collision.tag);
-        if ( collision.CompareTag("Startbosstrigger"))
-        {
-            
-            bossisactive =true; 
-            if(bossdialgouguetrigger == null)
-            {
-                Debug.Log("dialogue where");
-            }
-            else
-            {
-                bossdialgouguetrigger.dialogueforboss();
-            }
-            
-            animatorboss.SetBool("sleep", false);
-            animatorboss.SetTrigger("EndSleep");
-            animatorboss.SetTrigger("enrage");
-
-            AudioSource.PlayClipAtPoint(ragesound, transform.position);
-            
-        }
-    }
+ 
    public void ActivateBoss()
     {
          bossisactive =true; 
