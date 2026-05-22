@@ -22,10 +22,13 @@ public class Mobscript : MonoBehaviour
     
     [SerializeField] private UnityEngine.UI.Slider mobHealth; // Reference to the Animator component
     [SerializeField] private GameObject Weapon;
+    private GameObject player;
     // Force applied to the target when attacking
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+    target= player.transform;
         if (mobHealth != null)
         {
             mobHealth.maxValue = maxhealth; // Set the maximum value of the health slider

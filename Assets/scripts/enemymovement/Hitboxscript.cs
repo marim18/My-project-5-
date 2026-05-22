@@ -5,6 +5,7 @@ public class Hitboxscript : MonoBehaviour
    [SerializeField] private GameObject limb;
    [SerializeField] public bool isboss = true;
    [SerializeField] public bool isenemy = false;
+ 
     private Collider hitboxcollider;
     public int damage = 10; // Adjust the damage value as needed
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,7 +13,8 @@ public class Hitboxscript : MonoBehaviour
     {
         
         hitboxcollider = GetComponent<Collider>();
-        hitboxcollider.enabled = false; 
+
+        hitboxcollider.enabled = true;
         if (hitboxcollider == null){
             Debug.LogError("Collider component not found on the hitbox object." + gameObject.name);
             return;
@@ -22,6 +24,7 @@ public class Hitboxscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
     }
    public void hitboxenabled()
     {

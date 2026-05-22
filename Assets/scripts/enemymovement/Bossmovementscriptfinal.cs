@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-//i gave up and pasted my buggy code into chatgpt. The result was a mess, then i changed it considerably and simplified it.
+
 public class Bossmovementscriptfinal : MonoBehaviour
 {
 
@@ -32,7 +32,7 @@ int tempcheckythingy = 0;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip gruntSound;
     public bool walksoundplayed = false;
-   [SerializeField] private UnityEngine.UI.Slider healthbarobject;
+    public UnityEngine.UI.Slider healthbarobject;
     Collider collidern;
     public bool bossisactive = false;
    public DialogueTrigger bossdialgouguetrigger;
@@ -74,7 +74,10 @@ int tempcheckythingy = 0;
     {
 
         
-      
+      if(!bossisactive)
+        {
+            return;
+        }
         if (player == null)
            Debug.LogError("Player reference is missing!");
 
@@ -110,6 +113,7 @@ int tempcheckythingy = 0;
 
     void  MeleeAttack()
     {
+        
         Debug.Log("Boss is performing a melee attack!");
 
         int randomAttack = Random.Range(0, 2);
@@ -125,10 +129,7 @@ int tempcheckythingy = 0;
             
            animatorboss.SetTrigger("Hit");
             Debug.Log("Boss used headbutt!");
-            
-          
-             // Wait for the hit animation to play
-        // Replace with actual animation duration
+        
         }
         else
         {
@@ -150,8 +151,8 @@ int tempcheckythingy = 0;
 
     void LaunchProjectile()
     {
-        if (FireBall == null)
-            Debug.LogError("FireBall prefab is not assigned!");
+        if (FireBall == null){
+            Debug.LogError("FireBall prefab is not assigned!");}
 
         Instantiate(
             FireBall,
@@ -238,10 +239,10 @@ int tempcheckythingy = 0;
             Die();
         }
     }
-    void onTriggerEnter(Collider collision)
+ 
+   public void ActivateBoss()
     {
-        if (animatorboss.GetCurrentAnimatorStateInfo(0).IsName("Sleep") && collision.CompareTag("Startbosstrigger"))
-        {
+         bossisactive =true; 
             if(bossdialgouguetrigger == null)
             {
                 Debug.Log("dialogue where");
@@ -251,12 +252,13 @@ int tempcheckythingy = 0;
                 bossdialgouguetrigger.dialogueforboss();
             }
             
-            animatorboss.SetBool("sleep", false);
-            animatorboss.SetTrigger("EndSleep");
-            animatorboss.SetTrigger("enrage");
-            AudioSource.PlayClipAtPoint(ragesound, transform.position);
+            animatorboss.SetBool("Sleep", false);
+            animatorboss.SetTrigger("SleepEnd");
+           animatorboss.SetTrigger("Rage");
+
+           AudioSource.PlayClipAtPoint(ragesound, transform.position);
             
-        }
     }
+    
 }
 
