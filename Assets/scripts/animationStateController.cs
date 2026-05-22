@@ -3,7 +3,8 @@ using UnityEngine;
 public class AnimationStateController : MonoBehaviour
 {
    public Animator animator;
-
+public float jumpForce = 7f;
+Rigidbody rb;
    int isWalkingHash;
     int isRunningHash;
     int jumpHash;
@@ -12,13 +13,11 @@ public class AnimationStateController : MonoBehaviour
     public bool isRunning = false;
     float inputaxisy;
     public float inputaxisx;
-        public float jumpForce = 7f;
+    
    
 
     public float walkSpeed = 1.5f;
     public float runSpeed = 4f;
-
-    public Rigidbody rb;
 
        
     void Start()
@@ -80,10 +79,9 @@ public class AnimationStateController : MonoBehaviour
         // Jump animation
         if (jumpPressed)
         {
-                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
                  Debug.Log(rb.linearVelocity + "jump speed"); 
             animator.SetTrigger(jumpHash);
-            
         }
 
         // Sword animation
